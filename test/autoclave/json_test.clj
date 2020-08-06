@@ -21,15 +21,15 @@
   (assert-sanitized "\"foo\"")
   (assert-sanitized "\"foo\"" "'foo'")
   (assert-sanitized 
-   "\"<script>foo()<\\/script>\"" "\"<script>foo()</script>\"")
+   "\"\\u003cscript>foo()\\u003c/script>\"" "\"<script>foo()</script>\"")
   (assert-sanitized 
-   "\"<script>foo()<\\/script>\"" "\"<script>foo()</script>\"")
-  (assert-sanitized "\"<\\/SCRIPT\\n>\"" "\"</SCRIPT\n>\"")
-  (assert-sanitized "\"<\\/ScRIpT\"" "\"</ScRIpT\"")
+   "\"\\u003cscript>foo()\\u003c/script>\"" "\"<script>foo()</script>\"")
+  (assert-sanitized "\"\\u003c/SCRIPT\\n>\"" "\"</SCRIPT\n>\"")
+  (assert-sanitized "\"\\u003c/ScRIpT\"" "\"</ScRIpT\"")
   
   ;; \u0130 is a Turkish dotted upper-case 'I' so the lower case version of
   ;; the tag name is "script".
-  (assert-sanitized "\"<\\/ScR\u0130pT\"" "\"</ScR\u0130pT\"")
+  (assert-sanitized "\"\\u003c/ScR\u0130pT\"" "\"</ScR\u0130pT\"")
   (assert-sanitized "\"<b>Hello</b>\"")
   (assert-sanitized "\"<s>Hello</s>\"")
   (assert-sanitized "\"<[[\\u005d]>\"" "'<[[]]>'")
